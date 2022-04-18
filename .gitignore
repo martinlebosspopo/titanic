@@ -1,4 +1,9 @@
 *.csv
 *.zip
+*.pkl
 __pycache__/
 .ipynb_checkpoints/
+mlruns/
+submissions/
+data/
+Zprev_commit.ipynb

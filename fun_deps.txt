@@ -1,9 +1,0 @@
-copy() : 
-remove_unusable_cols() : 
-keep_first_letter() : 
-replace_cols_nans() : 
-remove_nans() : replace_cols_nans()
-convert_types() : remove_nans()
-(TRAIN) remove_outliers() : remove_nans() convert_types()
-get_dummies() : convert_types() remove_unusable_cols()
-(SUB) set_same_dummies_as_ref() : get_dummies()
