@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -7,8 +9,33 @@ def submit(subm_path, ids, y_pred):
         'PassengerId': ids,
         'Survived': y_pred
     })
-
+    if not os.path.exists(subm_path):
+        dirname = os.path.dirname(subm_path)
+        print(f'Do you want to create <{dirname}> ? (Y or N)')
+        s = input()
+        if s == 'Y':
+            os.makedirs(dirname)
+        elif s == 'N':
+            print('Submit canceled')
+            return
     subm_df.to_csv(subm_path, index=False)
+
+
+def get_lastcommit_infos(git_repo):
+
+    def format_commit_datetime(commit_datetime):
+        commit_day = commit_datetime.strftime('%d')
+        commit_month = commit_datetime.strftime('%B')[:3]
+        commit_year = commit_datetime.strftime('%Y')
+        commit_time = commit_datetime.strftime('%H:%M')
+        return f'{commit_day} {commit_month} {commit_year} at {commit_time}'
+
+    return {
+        'commit_time': format_commit_datetime(git_repo.head.commit.committed_datetime),
+        'commit_message': git_repo.head.commit.message,
+        'commit_sha': git_repo.head.commit.hexsha[:7],
+        'Branch': git_repo.active_branch.name
+    }
 
 
 class CVSplitter:

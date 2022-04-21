@@ -38,7 +38,7 @@ steps_main = [
     ('Fill NaN', s4p.ColumnTransformer(fillna, remainder='passthrough') ),
     ('Convert Types', tr.AsTypes(coltypes_overwrite={'Age': 'float64'}) ),
     ('One Hot', s4p.OneHotEncoder(cols_select=['Pclass', 'Sex', 'Cabin', 'SibSp', 'Embarked']) ),
-    ('LogisticRegression', LogisticRegression(max_iter=200, random_state=42))
+    ('Dummy Classifier', DummyClassifier())
 ]
 
 pipe = Pipeline(steps_main)
