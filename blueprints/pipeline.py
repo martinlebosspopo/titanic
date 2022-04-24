@@ -38,7 +38,7 @@ steps_main = [
     ('Fill NaN', s4p.ColumnTransformer(fillna, remainder='passthrough') ),
     ('Convert Types', tr.AsTypes(coltypes_overwrite={'Age': 'float64'}) ),
     ('One Hot', s4p.OneHotEncoder(cols_select=['Pclass', 'Sex', 'Cabin', 'SibSp', 'Embarked']) ),
-    ('Dummy Classifier', DummyClassifier())
+    ('Random Forest', RandomForestClassifier())
 ]
 
 pipe = Pipeline(steps_main)
