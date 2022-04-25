@@ -73,9 +73,6 @@ class SimpleImputer(BaseTransformer):
         self.cols = X.columns
         return self
 
-    def get_feature_names_out(self, *args, **kwargs):
-        return self.cols
-
     def transform(self, X, y=None):
         transfo_arr = self.imputer.transform(X)
         return pd.DataFrame(transfo_arr, columns=self.cols, index=X.index)
@@ -92,9 +89,6 @@ class StandardScaler(BaseTransformer):
         self.scaler.fit(X)
         self.cols = X.columns
         return self
-
-    def get_feature_names_out(self, *args, **kwargs):
-        return self.cols
 
     def transform(self, X, y=None):
         transfo_arr = self.scaler.transform(X)

@@ -6,7 +6,6 @@ class BaseTransformer(BaseEstimator, TransformerMixin):
         return self
 
     def get_feature_names_out(self, *args):
-        print('GET FEATURES NAMES', args)
         return args[0]
 
 

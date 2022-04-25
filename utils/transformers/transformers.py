@@ -59,9 +59,6 @@ class ClipOutliers(ColumnsAsParameters):
         self.stds = X[self.cols_final].std(numeric_only=True)
         return self
 
-    def get_feature_names_out(self, *args, **kwargs):
-        return self.cols_final
-
     def transform(self, X, y=None):
         X = X.copy()
         X[self.cols_final] = X[self.cols_final].clip(
