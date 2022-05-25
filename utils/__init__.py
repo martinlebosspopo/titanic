@@ -9,7 +9,7 @@ def submit(subm_path, ids, y_pred):
         'PassengerId': ids,
         'Survived': y_pred
     })
-    if not os.path.exists(subm_path):
+    if not os.path.exists(os.path.dirname(subm_path)):
         dirname = os.path.dirname(subm_path)
         print(f'Do you want to create <{dirname}> ? (Y or N)')
         s = input()
